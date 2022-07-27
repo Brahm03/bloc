@@ -9,8 +9,8 @@ part 'burger_state.dart';
 
 class BurgerBloc extends Bloc<BurgerEvent, BurgerState> {
   BurgerBloc() : super(BurgerInitial()) {
-    on<BurgerEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<LoadBurgerCounter>((event, emit) {});
+    on<AddBurger>((event, emit) {});
+    on<Removeburger>((event, emit) {});
   }
 }
