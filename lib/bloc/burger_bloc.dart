@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:bloc/bloc.dart';
+import 'package:blocapp/model/burger_model.dart';
 import 'package:equatable/equatable.dart';
 
 part 'burger_event.dart';
