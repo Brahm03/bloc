@@ -19,6 +19,6 @@ class Burger extends Equatable {
     Burger(
         id: '1',
         name: 'BlackBurger',
-        pic: Image.asset('assets/images/blackburger.png'))
+        pic: Image.asset('assets/images/blackburger.png', colorBlendMode: BlendMode.clear,))
   ];
 }

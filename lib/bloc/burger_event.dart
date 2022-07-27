@@ -20,7 +20,6 @@ class AddBurger extends BurgerEvent {
 
 class Removeburger extends BurgerEvent {
   final Burger burger;
-
   const Removeburger({required this.burger});
 
   @override

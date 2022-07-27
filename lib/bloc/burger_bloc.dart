@@ -22,7 +22,7 @@ class BurgerBloc extends Bloc<BurgerEvent, BurgerState> {
     on<Removeburger>((event, emit) {
       if (state is BurgerLoaded) {
         final state = this.state as BurgerLoaded;
-        emit(BurgerLoaded(burgers: List.from(state.burgers)..add(event.burger)));
+        emit(BurgerLoaded(burgers: List.from(state.burgers)..remove(event.burger)));
       }
     });
   }

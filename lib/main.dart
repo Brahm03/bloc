@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:blocapp/bloc/burger_bloc.dart';
 import 'package:blocapp/model/burger_model.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +40,7 @@ class MyApp extends StatelessWidget {
                     child: CircularProgressIndicator.adaptive());
               } else if (state is BurgerLoaded) {
                 return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       state.burgers.length.toString(),
@@ -50,39 +51,58 @@ class MyApp extends StatelessWidget {
                       height: MediaQuery.of(context).size.height / 1.5,
                       width: MediaQuery.of(context).size.width,
                       child: Stack(
+                        alignment: Alignment.center,
+                        clipBehavior: Clip.none,
                         children: [
                           for (int index = 0;
                               index < state.burgers.length;
                               index++)
                             Positioned(
+                               bottom: Random().nextInt(400).toDouble(),
+                                top: Random().nextInt(400).toDouble(),
+                                left: Random().nextInt(250).toDouble(),
+                                right: Random().nextInt(250).toDouble(),
                                 child: SizedBox(
-                              height: 150,
-                              width: 150,
-                              child: state.burgers[index].pic,
-                            ))
+                                  height: 150,
+                                  width: 150,
+                                  child: state.burgers[index].pic,
+                                ))
                         ],
                       ),
-                    )
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          FloatingActionButton(
+                            backgroundColor: Colors.orange[800],
+                            onPressed: () {
+                              context
+                                  .read<BurgerBloc>()
+                                  .add(AddBurger(burger: Burger.burgers[0]));
+                            },
+                            child: const Icon(Icons.add),
+                          ),
+                          FloatingActionButton(
+                            backgroundColor: Colors.orange[800],
+                            onPressed: () {
+                              context
+                                  .read<BurgerBloc>()
+                                  .add(Removeburger(burger: Burger.burgers[0]));
+                            },
+                            child: const Icon(Icons.remove),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 );
               } else {
                 return const SizedBox();
               }
             }),
-          ),
-          floatingActionButton: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FloatingActionButton(
-                backgroundColor: Colors.orange[800],
-                onPressed: () {
-                  context
-                      .read<BurgerBloc>()
-                      .add(AddBurger(burger: Burger.burgers[0]));
-                },
-                child: const Icon(Icons.food_bank_sharp),
-              )
-            ],
           ),
         ),
       ),
