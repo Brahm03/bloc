@@ -10,19 +10,19 @@ abstract class BurgerEvent extends Equatable {
 class LoadBurgerCounter extends BurgerEvent {}
 
 class AddBurger extends BurgerEvent {
-  final List<Burger> burgers;
+  final Burger burger;
 
-  const AddBurger({required this.burgers});
+  const AddBurger({required this.burger});
 
   @override
-  List<Object> get props => [burgers];
+  List<Object> get props => [burger];
 }
 
 class Removeburger extends BurgerEvent {
-  final List<Burger> burgers;
+  final Burger burger;
 
-  const Removeburger({required this.burgers});
+  const Removeburger({required this.burger});
 
   @override
-  List<Object> get props => [burgers];
+  List<Object> get props => [burger];
 }
